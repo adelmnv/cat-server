@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { CatModule } from './cat/cat.module'; // Ensure the path is correct
+import { CatModule } from './cat/cat.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // Load environment variables
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
@@ -13,10 +13,10 @@ import { CatModule } from './cat/cat.module'; // Ensure the path is correct
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      autoLoadEntities: true, // Automatically load entities
-      synchronize: true,       // Automatically sync entities to the database (for development)
+      autoLoadEntities: true,
+      synchronize: true,
     }),
-    CatModule, // Import the CatModule here
+    CatModule,
   ],
 })
 export class AppModule {}
